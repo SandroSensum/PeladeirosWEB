@@ -1,15 +1,9 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
+using PeladeirosWeb.Models;
 
 namespace PeladeirosWeb
 {
@@ -18,6 +12,9 @@ namespace PeladeirosWeb
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
+            Peladeiro peladeiro = new Peladeiro();
+            peladeiro.Id = 1;
+            
         }
 
         public IConfiguration Configuration { get; }

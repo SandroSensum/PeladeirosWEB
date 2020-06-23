@@ -1,0 +1,38 @@
+Peladeiro
+	Id,
+	Nome,
+	CPF,
+	Telefone
+	Celular
+	Data de Cadastro
+	Data Inativo
+	Endereço
+	Código Cidade
+	Foto
+	Data Nascimento
+	Email
+	Observacao
+
+Usuario
+	Id,
+	Usuario,
+	Senha
+	Data de Cadastro
+	Data Inativo
+
+Valor
+	Id,
+	Mes
+	Ano
+	Valor
+
+Mensalidade
+	Id,
+	Cod. Peladeiro
+	Cod. Valor
+	Dat. Pagamento
+	Observacao
+
+
+
+
