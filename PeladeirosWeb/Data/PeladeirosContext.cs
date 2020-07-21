@@ -8,9 +8,11 @@ namespace PeladeirosWeb.Data
     {
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseFirebird(@"database=localhost:D:\PROJETOC#\2020\PELADEIROS.FDB;user=sysdba;password=masterkey");
+            optionsBuilder
+                .UseFirebird(@"database=localhost:D:\PROJETOC#\2020\PELADEIROS.FDB;user=sysdba;password=masterkey")
+                .UseLazyLoadingProxies();
         }
-
+        
         public DbSet<Mensalidade> Mensalidade { get; set; }
 
         public DbSet<Peladeiro> Peladeiro { get; set; }
@@ -18,5 +20,7 @@ namespace PeladeirosWeb.Data
         public DbSet<Usuario> Usuario { get; set; }
 
         public DbSet<Valor> Valor { get; set; }
+
+        public DbSet<Cidade> Cidade { get; set; }
     }
 }

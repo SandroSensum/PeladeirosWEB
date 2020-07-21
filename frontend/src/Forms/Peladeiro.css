@@ -1,0 +1,23 @@
+#comboCidade {
+    width: 500px;
+}
+
+.labelCombo{
+    margin: 2px;
+    min-width: 120px;
+}
+
+.manterEmLinha {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.precuo{
+    margin-top: 10px;
+    margin-left: 20px;
+    /* Este código é para centralizar os componentes */
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; 
+}

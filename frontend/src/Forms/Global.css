@@ -1,0 +1,48 @@
+.entrelinhas{
+    margin-bottom: 10px;
+}
+
+.entrecampos{
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+.recuo{
+    margin-top: 10px;
+    /* Este código é para centralizar os componentes */
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+}
+
+.botao{
+    display: flex;
+    flex-direction: row;
+}
+
+.margem{
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+.espaço{
+    margin-left: 10px;
+}
+
+.ufTamanho {
+    width: 80px;
+    margin-left: 10px;
+}
+
+.nomeTamanho {
+    width: 500px;
+}
+
+.dataTamanho {
+    width: 150px;
+}
+
+.checkbox {
+    margin-left: 80px;
+}
+

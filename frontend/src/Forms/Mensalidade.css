@@ -1,0 +1,25 @@
+.entrelinhas{
+    margin-bottom: 10px;
+}
+
+.recuo{
+    margin-top: 10px;
+    /* Este código é para centralizar os componentes */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.botao{
+    display: flex;
+    flex-direction: row;
+}
+
+.margem{
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+h1{
+   color: blue; 
+}

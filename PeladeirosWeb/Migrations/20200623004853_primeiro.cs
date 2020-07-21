@@ -13,7 +13,7 @@ namespace PeladeirosWeb.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("Fb:ValueGenerationStrategy", FbValueGenerationStrategy.IdentityColumn),
+                        .Annotation("Fb:ValueGenerationStrategy", FbValueGenerationStrategy.SequenceTrigger),
                     CidadeNome = table.Column<string>(maxLength: 50, nullable: false),
                     UF = table.Column<string>(maxLength: 2, nullable: false)
                 },

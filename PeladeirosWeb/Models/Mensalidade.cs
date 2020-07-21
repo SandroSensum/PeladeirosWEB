@@ -13,11 +13,11 @@ namespace PeladeirosWeb.Models
 
         //Essa parte define a chave estrangeira para a tabela Peladeiros
         public int PeladeiroId { get; set; }
-        public Peladeiro Peladeiro { get; set; }
+        public virtual Peladeiro Peladeiro { get; set; }
 
         //Essa parte define a chave estrangeira para a tabela Valor
         public int ValorId { get; set; }
-        public Valor Valor { get; set; }
+        public virtual Valor Valor { get; set; }
 
         public DateTime DatPgto { get; set; }
 

@@ -35,7 +35,7 @@ namespace PeladeirosWeb.Models
         public string Numero { get; set; }
 
         public int CidadeId { get; set; }
-        public Cidade Cidade { get; set; }
+        public virtual Cidade Cidade { get; set; }
 
         public byte[] Foto { get; set; }
 
@@ -48,6 +48,6 @@ namespace PeladeirosWeb.Models
         [MaxLength(1000)]
         public string Observacao { get; set; }
 
-        public List<Mensalidade> Mensalidades { get; set; }
+        public virtual List<Mensalidade> Mensalidades { get; set; }
     }
 }
