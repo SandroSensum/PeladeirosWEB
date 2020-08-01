@@ -29,18 +29,32 @@ namespace PeladeirosWeb.Controllers
         }
 
         // GET: /api/Valors/5
-        [HttpGet("{id}")]
-        public async Task<ActionResult<Valor>> GetValor(int id)
+        //[HttpGet("{id}")]
+        //public async Task<ActionResult<Valor>> GetValor(int id)
+        //{
+        //    var valor = await _context.Valor.FindAsync(id);
+
+        //    if (valor == null)
+        //    {
+        //        return NotFound("");
+        //    }
+
+        //    return valor;
+        //}
+
+        [HttpGet("{ano}")]
+        public ActionResult<List<Valor>> GetPorAno(int ano)
         {
-            var valor = await _context.Valor.FindAsync(id);
+            var valor = _context.Valor.Where(valor => valor.Ano == ano).ToList();
 
             if (valor == null)
             {
                 return NotFound("");
             }
 
-            return valor;
+            return Ok(valor);
         }
+
 
         // PUT: api/Valors/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for

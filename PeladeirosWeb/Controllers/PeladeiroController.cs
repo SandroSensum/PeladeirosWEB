@@ -82,12 +82,19 @@ namespace PeladeirosWeb.Controllers
         {
             try
             {
-                peladeiro.DatCadastro = DateTime.Now;
+                var erros = Validar(peladeiro);
 
-                _context.Peladeiro.Add(peladeiro);
-                await _context.SaveChangesAsync();
+                if (erros.Count == 0)
+                {
+                    peladeiro.DatCadastro = DateTime.Now;
 
-                return CreatedAtAction("GetPeladeiro", new { id = peladeiro.Id }, peladeiro);
+                    _context.Peladeiro.Add(peladeiro);
+                    await _context.SaveChangesAsync();
+
+                    return CreatedAtAction("GetPeladeiro", new { id = peladeiro.Id }, peladeiro);
+                }
+                else
+                    return BadRequest(erros);
             }
             catch (Exception ex)
             {
@@ -115,5 +122,26 @@ namespace PeladeirosWeb.Controllers
         {
             return _context.Peladeiro.Any(e => e.Id == id);
         }
+
+        private List<Erro> Validar(Peladeiro peladeiro)
+        {
+            List<Erro> erros = new List<Erro>();
+            if (_context.Peladeiro.Where(p => p.CPF == peladeiro.CPF).Count() > 0)
+                erros.Add(new Erro
+                {
+                    Codigo = 400,
+                    Mensagem = "CPF já cadastrado"
+                });
+
+            if(_context.Peladeiro.Where(p => p.Email == peladeiro.Email).Count() > 0)
+                erros.Add(new Erro
+                {
+                    Codigo = 400,
+                    Mensagem = "Email já cadastrado"
+                });
+
+            return erros;
+        }
+
     }
 }

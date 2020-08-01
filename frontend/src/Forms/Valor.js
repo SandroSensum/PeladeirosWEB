@@ -7,6 +7,7 @@ import InputLabel from '@material-ui/core/InputLabel';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import Button from '@material-ui/core/Button';
 import Api from '../Api';
+import { useHistory } from 'react-router-dom';
 
 function Valor() 
 {
@@ -14,6 +15,7 @@ function Valor()
     const [mes, setMes] = useState(1);
     const [ano, setAno] = useState(2020);
     const [valor, setValor] = useState(0);
+    const historico = useHistory();
 
     async function salvar() 
     {
@@ -34,6 +36,10 @@ function Valor()
 
     function mudarValor(valor){
         setValor(valor);
+    }
+
+    function irParaMenu() {
+        historico.push("/");
     }
 
     //Até aqui
@@ -78,6 +84,13 @@ function Valor()
                 </div>
                 <div className="margem">
                     <Button variant="contained" color="secondary">Cancelar</Button>
+                </div>
+            </div>
+            <div className="recuo">
+                <div className="btRetornarTamanho">
+                    <div className="margem">
+                        <Button variant="contained" fullWidth onClick={irParaMenu}>Retornar ao Menu</Button>
+                    </div>
                 </div>
             </div>
         </div>

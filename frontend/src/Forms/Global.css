@@ -12,7 +12,7 @@
     /* Este código é para centralizar os componentes */
     display: flex;
     flex-direction: column;
-    align-items: center; 
+    align-items: center;
 }
 
 .botao{
@@ -29,12 +29,21 @@
     margin-left: 10px;
 }
 
+.espaçomenu{
+    margin-top: 10px;
+    margin-left: 10px;
+}
+
 .ufTamanho {
     width: 80px;
     margin-left: 10px;
 }
 
 .nomeTamanho {
+    width: 590px;
+}
+
+.enderecoTamanho {
     width: 500px;
 }
 
@@ -46,3 +55,10 @@
     margin-left: 80px;
 }
 
+.btMenufTamanho {
+    width: 150px;
+}
+
+.btRetornarTamanho {
+    width: 220px;
+}

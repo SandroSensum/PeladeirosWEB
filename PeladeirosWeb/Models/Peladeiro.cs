@@ -11,7 +11,7 @@ namespace PeladeirosWeb.Models
         [Key]
         public int Id { get; set; }
 
-        [MaxLength(30)]
+        [MaxLength(50)]
         [Required]
         public string Nome { get; set; }
 
@@ -19,14 +19,14 @@ namespace PeladeirosWeb.Models
         [Required]
         public string CPF { get; set; }
 
-        [MaxLength(9)]
+        [MaxLength(14)]
         public string Telefone { get; set; }
 
-        [MaxLengthAttribute(10)]
+        [MaxLengthAttribute(15)]
         public string Celular { get; set; }
 
-        public DateTime DatCadastro { get; set; }
-        public DateTime DatInativo { get; set; }
+        public DateTimeOffset DatCadastro { get; set; }
+        public DateTimeOffset DatInativo { get; set; }
 
         [MaxLength(50)]
         public string Endereço { get; set; }
@@ -40,9 +40,9 @@ namespace PeladeirosWeb.Models
         public byte[] Foto { get; set; }
 
         [Required]
-        public DateTime DatNascimento { get; set; }
+        public DateTimeOffset DatNascimento { get; set; }
         
-        [MaxLength(30)]
+        [MaxLength(100)]
         public string Email { get; set; }
         
         [MaxLength(1000)]
