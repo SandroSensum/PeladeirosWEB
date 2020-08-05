@@ -23,3 +23,12 @@
 h1{
    color: blue; 
 }
+
+.erro {
+    color: red;
+    font-size: small;
+}
+
+.erroEscondido{
+    visibility: hidden;
+}

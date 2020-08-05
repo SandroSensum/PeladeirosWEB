@@ -28,20 +28,6 @@ namespace PeladeirosWeb.Controllers
             return await _context.Valor.ToListAsync();
         }
 
-        // GET: /api/Valors/5
-        //[HttpGet("{id}")]
-        //public async Task<ActionResult<Valor>> GetValor(int id)
-        //{
-        //    var valor = await _context.Valor.FindAsync(id);
-
-        //    if (valor == null)
-        //    {
-        //        return NotFound("");
-        //    }
-
-        //    return valor;
-        //}
-
         [HttpGet("{ano}")]
         public ActionResult<List<Valor>> GetPorAno(int ano)
         {
@@ -94,10 +80,20 @@ namespace PeladeirosWeb.Controllers
         [HttpPost]
         public async Task<ActionResult<Valor>> PostValor(Valor valor)
         {
-            _context.Valor.Add(valor);
-            await _context.SaveChangesAsync();
+            if (Validar(valor))
+            {
+                _context.Valor.Add(valor);
+                await _context.SaveChangesAsync();
 
-            return Ok("Valor incluído com sucesso");
+                return Ok("Valor incluído com sucesso");
+            }
+            else
+                return BadRequest( new Erro { Codigo = 404, Mensagem = $"Valor já cadastrado para o mês {valor.Mes} e ano {valor.Ano}" });
+        }
+
+        private bool Validar(Valor valor)
+        {
+            return _context.Valor.Where(x => x.Mes == valor.Mes && x.Ano == valor.Ano).FirstOrDefault() == null;
         }
 
         // DELETE: api/Valors/5

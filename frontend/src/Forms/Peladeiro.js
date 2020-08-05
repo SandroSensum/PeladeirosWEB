@@ -21,7 +21,7 @@ import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import Snackbar from '@material-ui/core/Snackbar';
 import MuiAlert from '@material-ui/lab/Alert';
-import { set } from 'date-fns';
+
 
 function Peladeiro() {
 
@@ -154,8 +154,6 @@ function Peladeiro() {
                 Numero: numero,
                 Email: email,
                 CidadeId: cidadeSelecionada.id,
-                // DatNascimento: "1978-01-28",
-                DatCadastro: "2020-07-16",
                 DatNascimento: dtNascimento.toISOString()
             };
 
@@ -242,6 +240,7 @@ function Peladeiro() {
     setInativo (false)
     setTextoInativo('Inativar');
     setDtNascimento (null)
+    setCidades([]);
     preencherCombo ();
   
     }
