@@ -10,6 +10,7 @@ import Api from '../Api';
 import { useHistory } from 'react-router-dom';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
+import mascaraValor from '../Mascaras/valor';
 /*import { useHistory } from 'react-router-dom';*/
 
 function ConsultaValor() {
@@ -33,10 +34,6 @@ function ConsultaValor() {
 
     function irParaIncluir() {
         history.push("/valorIncluir");
-    }
-
-    function ccyFormat(num) {
-        return `${num.toFixed(2)}`;
     }
 
     function irParaMenu() {
@@ -67,12 +64,9 @@ function ConsultaValor() {
                             <TableBody>
                                 {valores.map((valor) => (
                                     <TableRow key={valor.id}>
-                                        {/* <TableCell component="th" scope="row">
-                                {row.name}
-                            </TableCell> */}
                                         <TableCell >{valor.ano}</TableCell>
                                         <TableCell >{valor.mes}</TableCell>
-                                        <TableCell align="right">{ccyFormat(valor.val)}</TableCell>
+                                        <TableCell align="right">{mascaraValor(valor.val)}</TableCell>
                                     </TableRow>
                                 ))}
                             </TableBody>

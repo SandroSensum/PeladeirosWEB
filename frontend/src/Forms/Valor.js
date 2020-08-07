@@ -17,13 +17,13 @@ import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import Snackbar from '@material-ui/core/Snackbar';
 import MuiAlert from '@material-ui/lab/Alert';
-
+import mascaraValor from '../Mascaras/valor';
 
 function Valor() {
     //Javascript daqui
     const [mes, setMes] = useState(moment().format('MM'));
     const [ano, setAno] = useState(moment().format('yyyy'));
-    const [valor, setValor] = useState(0);
+    const [valor, setValor] = useState('');
     const historico = useHistory();
     const [temErroNoMes, setTemErroNoMes] = useState(false);
     const [erroMes, setErroMes] = useState('');
@@ -117,6 +117,11 @@ function Valor() {
         return validado;
     }
 
+    function aplicarMascara(evento){
+        mascaraValor(evento);
+        setValor(evento.target.value);
+    }
+
     //Até aqui
     return (
         // HTML Daqui pra baixo
@@ -150,7 +155,9 @@ function Valor() {
                         startAdornment={<InputAdornment position="start">R$</InputAdornment>}
                         labelWidth={50}
                         onChange={e => mudarValor(e.target.value)}
+                        onKeyUp={e => aplicarMascara(e)}
                         value={valor}
+                        
                     />
                     <label className={temErroNoValor ? "erro" : "erroEscondido"}>{erroValor}</label>
                 </FormControl>

@@ -12,8 +12,6 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import { cpfMask } from '../Mascaras/cpf';
 import { telefoneMask } from '../Mascaras/telefone';
 import { useHistory } from 'react-router-dom';
-import { KeyboardDatePicker, MuiPickersUtilsProvider } from '@material-ui/pickers';
-import DateFnsUtils from '@date-io/date-fns';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
@@ -21,6 +19,7 @@ import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import Snackbar from '@material-ui/core/Snackbar';
 import MuiAlert from '@material-ui/lab/Alert';
+import moment from 'moment';
 
 
 function Peladeiro() {
@@ -39,7 +38,7 @@ function Peladeiro() {
     const [email, setEmail] = useState('')
     const [inativo, setInativo] = useState(false);
     const [textoInativo, setTextoInativo] = useState('Inativar');
-    const [dtNascimento, setDtNascimento] = useState(null)
+    const [dtNascimento, setDtNascimento] = useState('')
 
     const [temErroNoCpf, setTemErroNoCpf] = useState(false);
     const [erroCpf, setErroCpf] = useState('');
@@ -51,7 +50,7 @@ function Peladeiro() {
     const [salvo, setSalvo] = useState(false);
 
     const historico = useHistory();
-
+    const [idade, setidade] = useState('');
 
     async function obterCidades() {
         let resposta = await Api.get('/Cidade');
@@ -159,12 +158,12 @@ function Peladeiro() {
 
             const resposta = await Api.post('/Peladeiro', objetoPeladeiro);
 
-            if (resposta.status === 201){
+            if (resposta.status === 201) {
 
                 setSalvo(true);
                 limpartela();
             }
-                
+
             else {
 
                 if (resposta.status == 400) {
@@ -224,25 +223,46 @@ function Peladeiro() {
         setMensagem([]);
     }
 
-    function limpartela () {
-    
-    setUf('');
-    setNome ('')
-    setCidadeSelecionada (null)
-    setCPF('')
-    setFone  ('')
-    setCelular ('')
-    setDtCadastro (new Date().toLocaleDateString())
-    setDtInativado('')
-    setEndereco ('')
-    setNumero ('')
-    setEmail ('')
-    setInativo (false)
-    setTextoInativo('Inativar');
-    setDtNascimento (null)
-    setCidades([]);
-    preencherCombo ();
-  
+    function limpartela() {
+
+        setUf('');
+        setNome('')
+        setCidadeSelecionada(null)
+        setCPF('')
+        setFone('')
+        setCelular('')
+        setDtCadastro(new Date().toLocaleDateString())
+        setDtInativado('')
+        setEndereco('')
+        setNumero('')
+        setEmail('')
+        setInativo(false)
+        setTextoInativo('Inativar');
+        setDtNascimento(null)
+        setCidades([]);
+        preencherCombo();
+
+    }
+
+    function calcularidade(data) {
+        let texto = data.target.value;
+
+        if (texto.length > 10)
+            return;
+
+        if (data.keyCode != 8 && data.keyCode != 8) {
+
+            if (texto.length == 2 || texto.length == 5)
+                texto += "/";
+
+            setDtNascimento(texto);
+            var hoje = moment();
+
+            if (texto.length == 10)
+                setidade(hoje.diff(moment(texto, "DD-MM-YYYY"), 'years'));
+        }
+        else
+            setidade('');
     }
 
     return (
@@ -261,18 +281,30 @@ function Peladeiro() {
                         />
                         <div className="espaço">
                             <div className="dataTamanho">
-                                <MuiPickersUtilsProvider utils={DateFnsUtils}>
-                                    <KeyboardDatePicker
-                                        variant="inline"
-                                        format="dd/MM/yyyy"
-                                        margin="normal"
-                                        label="Data de nascimento"
-                                        onChange={e => setDtNascimento(e)}
-                                        value={dtNascimento}
-                                    />
-                                </MuiPickersUtilsProvider>
+                                <TextField
+                                    error={temErroNoCpf}
+                                    helperText={erroCpf}
+                                    label="Data de nascimento"
+                                    variant="outlined"
+                                    margin="normal"
+                                    onChange={e => setDtNascimento(e.target.value)}
+                                    onKeyUp={e => calcularidade(e)}
+                                    value={dtNascimento}
+                                />
                             </div>
                         </div>
+                        <div className="manterEmLinha">
+                            <div className="ufTamanho">
+                                <TextField
+                                    disabled
+                                    fullWidth
+                                    label="Idade"
+                                    variant="outlined"
+                                    value={idade}
+                                />
+                            </div>
+                        </div>
+
                         <div className="checkbox">
                             <FormControlLabel
                                 control={
